@@ -1,8 +1,8 @@
-package com.glowbyte.decision.diagram.service.diagram.compare;
+package org.example.abstractobjectcompare.service;
 
-import com.glowbyte.decision.diagram.dto.node.ComparePayload;
-import com.glowbyte.decision.diagram.service.diagram.compare.CompareHelper.CompareFieldParams.CompareFieldType;
-import org.apache.commons.lang3.tuple.Pair;
+import org.example.abstractobjectcompare.model.ComparePayload;
+import org.example.abstractobjectcompare.service.CompareHelper.CompareFieldParams.CompareFieldType;
+import org.springframework.data.util.Pair;
 
 import java.util.List;
 import java.util.Map;
@@ -102,5 +102,6 @@ public interface CompareParamsStage {
         S fieldSelector(Pair<Function<T, Object>, CompareFieldType> selector);
 
     }
+
 
 }

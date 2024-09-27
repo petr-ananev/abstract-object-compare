@@ -13,7 +13,9 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class ExampleObjectDto {
+public class ExampleCollectionDto {
+
+    private String id;
 
     private String name;
 

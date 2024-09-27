@@ -1,4 +1,4 @@
-package org.example.abstractobjectcompare.service;
+package org.example.abstractobjectcompare.example.strategy;
 
 public interface CompareFacade<R,T> {
 

@@ -1,4 +1,4 @@
-package com.glowbyte.decision.diagram.service.diagram.compare;
+package org.example.abstractobjectcompare.example.strategy;
 
 public interface FindComparableObjectService<T> {
 

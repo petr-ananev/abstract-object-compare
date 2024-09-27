@@ -1,10 +1,7 @@
-package com.glowbyte.decision.diagram.service.diagram.compare;
+package org.example.abstractobjectcompare.example.strategy;
 
 import lombok.RequiredArgsConstructor;
 
-/**
- * @see CompareConfiguration
- */
 @RequiredArgsConstructor
 public class BaseCompareFacade<R, T> implements CompareFacade<R, String> {
 

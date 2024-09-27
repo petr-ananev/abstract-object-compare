@@ -1,4 +1,4 @@
-package com.glowbyte.decision.core.enums;
+package org.example.abstractobjectcompare.model;
 
 public enum ComparisonResultType {
     ADDED,

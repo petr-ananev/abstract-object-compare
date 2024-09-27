@@ -1,8 +1,7 @@
-package com.glowbyte.decision.diagram.dto.node;
+package org.example.abstractobjectcompare.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.glowbyte.decision.core.enums.ComparisonResultType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,10 +10,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
-import static com.glowbyte.decision.core.enums.ComparisonResultType.ADDED;
-import static com.glowbyte.decision.core.enums.ComparisonResultType.CHANGED;
-import static com.glowbyte.decision.core.enums.ComparisonResultType.DELETED;
 import static java.util.Objects.requireNonNull;
+import static org.example.abstractobjectcompare.model.ComparisonResultType.ADDED;
+import static org.example.abstractobjectcompare.model.ComparisonResultType.CHANGED;
+import static org.example.abstractobjectcompare.model.ComparisonResultType.DELETED;
 
 @Data
 @NoArgsConstructor

@@ -1,25 +1,22 @@
-package com.glowbyte.decision.diagram.dto.diagram;
+package org.example.abstractobjectcompare.example.dto;
 
-import com.glowbyte.decision.diagram.dto.diagram.DiagramDto.SourceCompareDiagram;
-import com.glowbyte.decision.diagram.dto.diagram.DiagramDto.TargetCompareDiagram;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.SuperBuilder;
 
 @Setter
 @Getter
+@Builder
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder(setterPrefix = "set")
-@EqualsAndHashCode(callSuper = true)
-public class DiagramCompareWrapper extends DiagramDto implements SourceCompareDiagram,
-                                                                 TargetCompareDiagram {
+public class ExampleObjectCompareWrapper {
 
-    DiagramCompareDto source;
+    ExampleObjectCompareDto source;
 
-    DiagramCompareDto target;
+    ExampleObjectCompareDto target;
 
 }

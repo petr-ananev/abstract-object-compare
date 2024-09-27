@@ -1,21 +1,23 @@
-package com.glowbyte.decision.diagram.service.diagram.compare;
+package org.example.abstractobjectcompare.service;
 
-import com.glowbyte.decision.diagram.dto.node.ComparePayload;
-import com.glowbyte.decision.diagram.service.diagram.compare.CompareParamsStage.CollectionName;
-import com.glowbyte.decision.diagram.service.diagram.compare.CompareParamsStage.FieldName;
-import com.glowbyte.decision.diagram.service.diagram.compare.CompareParamsStage.FieldSelector;
-import com.glowbyte.decision.diagram.service.diagram.compare.CompareParamsStage.KeySelector;
-import com.glowbyte.decision.diagram.service.diagram.compare.CompareParamsStage.Predicate;
-import com.glowbyte.decision.diagram.service.diagram.compare.CompareParamsStage.Source;
-import com.glowbyte.decision.diagram.service.diagram.compare.CompareParamsStage.SourceCollection;
-import com.glowbyte.decision.diagram.service.diagram.compare.CompareParamsStage.SourceComparePayload;
-import com.glowbyte.decision.diagram.service.diagram.compare.CompareParamsStage.SourceMap;
-import com.glowbyte.decision.diagram.service.diagram.compare.CompareParamsStage.Target;
-import com.glowbyte.decision.diagram.service.diagram.compare.CompareParamsStage.TargetCollection;
-import com.glowbyte.decision.diagram.service.diagram.compare.CompareParamsStage.TargetComparePayload;
-import com.glowbyte.decision.diagram.service.diagram.compare.CompareParamsStage.TargetMap;
+
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.tuple.Pair;
+import org.example.abstractobjectcompare.model.ComparePayload;
+import org.example.abstractobjectcompare.service.CompareHelper.CompareFieldParams.CompareFieldType;
+import org.example.abstractobjectcompare.service.CompareParamsStage.CollectionName;
+import org.example.abstractobjectcompare.service.CompareParamsStage.FieldName;
+import org.example.abstractobjectcompare.service.CompareParamsStage.FieldSelector;
+import org.example.abstractobjectcompare.service.CompareParamsStage.KeySelector;
+import org.example.abstractobjectcompare.service.CompareParamsStage.Predicate;
+import org.example.abstractobjectcompare.service.CompareParamsStage.Source;
+import org.example.abstractobjectcompare.service.CompareParamsStage.SourceCollection;
+import org.example.abstractobjectcompare.service.CompareParamsStage.SourceComparePayload;
+import org.example.abstractobjectcompare.service.CompareParamsStage.SourceMap;
+import org.example.abstractobjectcompare.service.CompareParamsStage.Target;
+import org.example.abstractobjectcompare.service.CompareParamsStage.TargetCollection;
+import org.example.abstractobjectcompare.service.CompareParamsStage.TargetComparePayload;
+import org.example.abstractobjectcompare.service.CompareParamsStage.TargetMap;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -31,11 +33,9 @@ import java.util.function.BiPredicate;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static com.glowbyte.decision.diagram.service.diagram.compare.CompareHelper.CompareFieldParams.CompareFieldType.ONLY_EQUALS;
 import static java.util.Collections.emptyMap;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
-import static org.apache.commons.lang3.BooleanUtils.isFalse;
 
 @Service
 public class CompareHelper {
@@ -132,12 +132,12 @@ public class CompareHelper {
                           .forEach((fieldName, pair) -> {
                               Object sourceField = isNull(source)
                                                    ? null
-                                                   : pair.getKey().apply(source);
+                                                   : pair.getFirst().apply(source);
                               Object targetField = isNull(target)
                                                    ? null
-                                                   : pair.getKey().apply(target);
-                              if (pair.getValue() == ONLY_EQUALS) {
-                                  if (isFalse(Objects.equals(sourceField, targetField))) {
+                                                   : pair.getFirst().apply(target);
+                              if (pair.getSecond() == CompareFieldType.ONLY_EQUALS) {
+                                  if (!(Objects.equals(sourceField, targetField))) {
                                       sourcePayload.fieldWasChanged(fieldName);
                                       targetPayload.fieldWasChanged(fieldName);
                                   }
@@ -146,7 +146,7 @@ public class CompareHelper {
                                       sourcePayload.fieldWasAdded(fieldName);
                                   } else if (nonNull(sourceField) && isNull(targetField)) {
                                       targetPayload.fieldWasDeleted(fieldName);
-                                  } else if (isFalse(Objects.equals(sourceField, targetField))) {
+                                  } else if (!(Objects.equals(sourceField, targetField))) {
                                       sourcePayload.fieldWasChanged(fieldName);
                                       targetPayload.fieldWasChanged(fieldName);
                                   }

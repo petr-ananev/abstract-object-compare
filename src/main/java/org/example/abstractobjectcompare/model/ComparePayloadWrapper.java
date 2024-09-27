@@ -1,4 +1,4 @@
-package com.glowbyte.decision.diagram.dto.node;
+package org.example.abstractobjectcompare.model;
 
 public record ComparePayloadWrapper(ComparePayload source, ComparePayload target) {
 
